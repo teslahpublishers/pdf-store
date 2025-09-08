@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Store</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+    header {
+      text-align: center;
+      padding: 20px;
+      background: #004080;
+      color: white;
+      border-radius: 8px;
+    }
+    h1 {
+      margin: 0;
+    }
+    p {
+      margin: 5px 0 15px;
+    }
+    #searchBox {
+      width: 100%;
+      max-width: 400px;
+      padding: 10px;
+      margin: 20px auto;
+      display: block;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1em;
+    }
+    .pdf-list {
+      margin-top: 20px;
+      padding: 0;
+      list-style: none;
+    }
+    .pdf-list li {
+      background: white;
+      margin: 10px 0;
+      padding: 15px;
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .pdf-list a {
+      text-decoration: none;
+      color: #004080;
+      font-weight: bold;
+    }
+    .pdf-list a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 0.9em;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📚 PDF Store</h1>
+    <p>Browse and download published PDF journals</p>
+  </header>
+
+  <!-- 🔍 Search Box -->
+  <input type="text" id="searchBox" placeholder="Search PDFs by name...">
+
+  <main>
+    <ul class="pdf-list" id="pdfList"></ul>
+  </main>
+
+  <footer>
+    &copy; 2025 PDF Store | Powered by GitHub Pages
+  </footer>
+
+  <script>
+    const username = "oo-code";   // your GitHub username
+    const repo = "pdf-store";     // your repository name
+    const folder = "pdfs";        // folder where PDFs are stored
+    let allFiles = [];
+
+    async function fetchPDFs() {
+      try {
+        const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/${folder}`;
+        const response = await fetch(apiUrl);
+        allFiles = await response.json();
+
+        displayPDFs(allFiles);
+      } catch (error) {
+        console.error("Error fetching PDF list:", error);
+      }
+    }
+
+    function displayPDFs(files) {
+      const list = document.getElementById("pdfList");
+      list.innerHTML = "";
+
+      files.forEach(file => {
+        if (file.name.endsWith(".pdf")) {
+          const li = document.createElement("li");
+          li.innerHTML = `<a href="${file.download_url}" target="_blank">${file.name}</a>`;
+          list.appendChild(li);
+        }
+      });
+    }
+
+    // 🔍 Search filter
+    document.getElementById("searchBox").addEventListener("input", function() {
+      const query = this.value.toLowerCase();
+      const filtered = allFiles.filter(file => file.name.toLowerCase().includes(query));
+      displayPDFs(filtered);
+    });
+
+    fetchPDFs();
+  </script>
+</body>
+</html>
