@@ -7,118 +7,192 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f8f9fa;
-      color: #333;
+      background-color: #f4f8fc;
       margin: 0;
-      padding: 20px;
+      padding: 0;
     }
     header {
-      text-align: center;
-      padding: 20px;
-      background: #004080;
+      background-color: #007acc;
       color: white;
-      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
     }
-    h1 {
+    header h1 {
       margin: 0;
+      font-size: 2rem;
     }
-    p {
-      margin: 5px 0 15px;
+    header p {
+      margin: 0.3rem 0 0;
+      font-size: 1rem;
     }
-    #searchBox {
-      width: 100%;
-      max-width: 400px;
-      padding: 10px;
-      margin: 20px auto;
+    #search {
+      margin: 1rem auto;
       display: block;
+      width: 90%;
+      max-width: 400px;
+      padding: 0.5rem;
+      font-size: 1rem;
+      border-radius: 5px;
       border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 1em;
     }
-    .pdf-list {
-      margin-top: 20px;
-      padding: 0;
-      list-style: none;
-    }
-    .pdf-list li {
+    table {
+      margin: 1rem auto;
+      border-collapse: collapse;
+      width: 95%;
+      max-width: 1000px;
       background: white;
-      margin: 10px 0;
-      padding: 15px;
-      border-radius: 6px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    .pdf-list a {
-      text-decoration: none;
-      color: #004080;
-      font-weight: bold;
+    th, td {
+      border: 1px solid #ddd;
+      padding: 0.8rem;
+      text-align: left;
     }
-    .pdf-list a:hover {
-      text-decoration: underline;
+    th {
+      background-color: #007acc;
+      color: white;
+      cursor: pointer;
+      user-select: none;
     }
-    footer {
-      text-align: center;
-      margin-top: 30px;
-      font-size: 0.9em;
-      color: #555;
+    th:hover {
+      background-color: #005f99;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    .buy-btn {
+      background-color: #007acc;
+      color: white;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+    .buy-btn:hover {
+      background-color: #005f99;
     }
   </style>
 </head>
 <body>
   <header>
     <h1>📚 PDF Store</h1>
-    <p>Browse and download published PDF journals</p>
+    <p>Browse and purchase published PDF journals</p>
   </header>
 
-  <!-- 🔍 Search Box -->
-  <input type="text" id="searchBox" placeholder="Search PDFs by name...">
+  <input type="text" id="search" placeholder="Search PDFs...">
 
-  <main>
-    <ul class="pdf-list" id="pdfList"></ul>
-  </main>
-
-  <footer>
-    &copy; 2025 PDF Store | Powered by GitHub Pages
-  </footer>
+  <!-- Editable Table -->
+  <table id="pdf-table">
+    <thead>
+      <tr>
+        <th>PDF Title</th>
+        <th>Sales Count</th>
+        <th>Payhip Link (🌍)</th>
+        <th>Paystack Link (🇳🇬)</th>
+        <th data-nosort="true">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- 📝 Add your PDFs here -->
+      <tr>
+        <td>MyResearchPaper1.pdf</td>
+        <td>23</td>
+        <td>https://payhip.com/b/abc123</td>
+        <td>https://paystack.com/pay/xyz123</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>MyResearchPaper2.pdf</td>
+        <td>12</td>
+        <td>https://payhip.com/b/def456</td>
+        <td>https://paystack.com/pay/uvw456</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>MyResearchPaper3.pdf</td>
+        <td>45</td>
+        <td>https://payhip.com/b/ghi789</td>
+        <td>https://paystack.com/pay/mno789</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 
   <script>
-    const username = "oo-code";   // your GitHub username
-    const repo = "pdf-store";     // your repository name
-    const folder = "pdfs";        // folder where PDFs are stored
-    let allFiles = [];
+    let isNigeria = false;
 
-    async function fetchPDFs() {
-      try {
-        const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/${folder}`;
-        const response = await fetch(apiUrl);
-        allFiles = await response.json();
-
-        displayPDFs(allFiles);
-      } catch (error) {
-        console.error("Error fetching PDF list:", error);
-      }
-    }
-
-    function displayPDFs(files) {
-      const list = document.getElementById("pdfList");
-      list.innerHTML = "";
-
-      files.forEach(file => {
-        if (file.name.endsWith(".pdf")) {
-          const li = document.createElement("li");
-          li.innerHTML = `<a href="${file.download_url}" target="_blank">${file.name}</a>`;
-          list.appendChild(li);
+    // Detect user location
+    fetch("https://ipapi.co/json/")
+      .then(response => response.json())
+      .then(data => {
+        if (data && data.country_code === "NG") {
+          isNigeria = true;
         }
+        processTable();
+      })
+      .catch(err => {
+        console.error("Location check failed:", err);
+        processTable();
+      });
+
+    // Add action buttons to table
+    function processTable() {
+      const rows = document.querySelectorAll("#pdf-table tbody tr");
+      rows.forEach(row => {
+        const payhip = row.cells[2].textContent.trim();
+        const paystack = row.cells[3].textContent.trim();
+
+        const button = document.createElement("button");
+        button.className = "buy-btn";
+        button.textContent = "Buy with " + (isNigeria ? "Paystack 🇳🇬" : "Payhip 🌍");
+        button.onclick = () => window.open(isNigeria ? paystack : payhip, "_blank");
+
+        row.cells[4].innerHTML = ""; // clear old buttons
+        row.cells[4].appendChild(button);
       });
     }
 
-    // 🔍 Search filter
-    document.getElementById("searchBox").addEventListener("input", function() {
-      const query = this.value.toLowerCase();
-      const filtered = allFiles.filter(file => file.name.toLowerCase().includes(query));
-      displayPDFs(filtered);
+    // Search filter
+    document.getElementById("search").addEventListener("keyup", function() {
+      const filter = this.value.toLowerCase();
+      const rows = document.querySelectorAll("#pdf-table tbody tr");
+      rows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        row.style.display = text.includes(filter) ? "" : "none";
+      });
     });
 
-    fetchPDFs();
+    // Sortable table (ignore Action column)
+    document.querySelectorAll("#pdf-table th").forEach((th, columnIndex) => {
+      if (!th.dataset.nosort) {
+        th.addEventListener("click", () => {
+          sortTable(columnIndex);
+        });
+      }
+    });
+
+    let sortDirection = {};
+
+    function sortTable(colIndex) {
+      const table = document.getElementById("pdf-table");
+      const tbody = table.tBodies[0];
+      const rows = Array.from(tbody.querySelectorAll("tr"));
+
+      const ascending = !sortDirection[colIndex];
+      sortDirection[colIndex] = ascending;
+
+      rows.sort((a, b) => {
+        const aText = a.cells[colIndex].textContent.trim().toLowerCase();
+        const bText = b.cells[colIndex].textContent.trim().toLowerCase();
+        return ascending ? aText.localeCompare(bText) : bText.localeCompare(aText);
+      });
+
+      tbody.innerHTML = "";
+      rows.forEach(row => tbody.appendChild(row));
+
+      processTable(); // reattach buttons after sorting
+    }
   </script>
 </body>
 </html>
