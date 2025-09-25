@@ -3,27 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PDF Store</title>
+  <title>PDF Store - Teslah Publishers</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       background-color: #f4f8fc;
       margin: 0;
       padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
     header {
-      background-color: #007acc;
+      background: linear-gradient(135deg, #007acc, #005f99);
       color: white;
-      padding: 1rem;
+      padding: 2.5rem 1rem;
       text-align: center;
+      position: relative;
     }
     header h1 {
       margin: 0;
-      font-size: 2rem;
+      font-size: 2.7rem;
+      font-weight: bold;
+      letter-spacing: 1px;
     }
-    header p {
-      margin: 0.3rem 0 0;
-      font-size: 1rem;
+    header h2 {
+      margin: 0.6rem 0 0;
+      font-size: 1.2rem;
+      font-weight: normal;
     }
     #search {
       margin: 1rem auto;
@@ -71,6 +78,205 @@
     }
     .buy-btn:hover {
       background-color: #005f99;
+    }
+
+    footer {
+      margin-top: auto;
+      background-color: #222;
+      color: #ddd;
+      padding: 2.5rem 1rem 3.5rem;
+      font-size: 0.9rem;
+      position: relative;
+    }
+    footer p {
+      margin: 0.3rem 0;
+      text-align: center;
+    }
+    .footer-right {
+      position: absolute;
+      right: 1rem;
+      bottom: 0.8rem;
+      font-size: 0.8rem;
+      color: #aaa;
+      font-style: italic;
+    }
+
+    /* Social media stacked left side */
+    .social-icons {
+      position: absolute;
+      left: 1rem;
+      bottom: 0.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .social-icons a {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #ddd;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+    .social-icons a:hover {
+      color: #007acc;
+    }
+    .social-icons svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Teslah Publishers</h1>
+    <h2>📚 PDF Store – Browse and purchase published PDF journals</h2>
+  </header>
+
+  <input type="text" id="search" placeholder="Search PDFs...">
+
+  <!-- Editable Table -->
+  <table id="pdf-table">
+    <thead>
+      <tr>
+        <th>PDF Title</th>
+        <th>Sales Count</th>
+        <th>Payhip Link (🌍)</th>
+        <th>Paystack Link (🇳🇬)</th>
+        <th data-nosort="true">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>MyResearchPaper1.pdf</td>
+        <td>23</td>
+        <td>https://payhip.com/b/abc123</td>
+        <td>https://paystack.com/pay/xyz123</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>MyResearchPaper2.pdf</td>
+        <td>12</td>
+        <td>https://payhip.com/b/def456</td>
+        <td>https://paystack.com/pay/uvw456</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>MyResearchPaper3.pdf</td>
+        <td>45</td>
+        <td>https://payhip.com/b/ghi789</td>
+        <td>https://paystack.com/pay/mno789</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <footer>
+    <p>© 2025 Teslah Publishers. All Rights Reserved.</p>
+    <p>Committed to delivering knowledge through published journals.</p>
+
+    <!-- Social media stacked vertical -->
+    <div class="social-icons">
+      <a href="#" title="TikTok">
+        <svg viewBox="0 0 24 24"><path d="M12.69 2h4.14a6.58 6.58 0 0 0 .07.93 4.42 4.42 0 0 0 1.29 2.5 4.6 4.6 0 0 0 2.52 1.2c.2 0 .41.02.62.02v4.18c-.46 0-.91 0-1.36-.05a7.1 7.1 0 0 1-3.44-1.25v7.47c0 3.98-2.64 7.13-6.53 7.96a8.2 8.2 0 0 1-6.77-1.64A8.17 8.17 0 0 1 2 15.3a8.12 8.12 0 0 1 9.02-8.1v4.29a3.65 3.65 0 0 0-.57-.05 3.85 3.85 0 0 0-3.98 3.54 3.87 3.87 0 0 0 2.14 3.74c1.57.8 3.28.6 4.47-.54a3.6 3.6 0 0 0 1.1-2.66V2Z"/></svg>
+        TikTok
+      </a>
+      <a href="#" title="Twitter">
+        <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3Z"/></svg>
+        Twitter
+      </a>
+      <a href="#" title="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm0 2h10c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3zm5 2a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm4.5-.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z"/></svg>
+        Instagram
+      </a>
+      <a href="#" title="Facebook">
+        <svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.5 9.95V14.9h-2.3V12h2.3V9.8c0-2.27 1.35-3.55 3.42-3.55.99 0 2.03.18 2.03.18v2.24h-1.14c-1.12 0-1.47.7-1.47 1.42V12h2.5l-.4 2.9h-2.1v7.05A10 10 0 0 0 22 12Z"/></svg>
+        Facebook
+      </a>
+    </div>
+
+    <div class="footer-right">Lumeed Ventures tech solutions</div>
+  </footer>
+
+  <script>
+    let isNigeria = false;
+
+    // Detect user location
+    fetch("https://ipapi.co/json/")
+      .then(response => response.json())
+      .then(data => {
+        if (data && data.country_code === "NG") {
+          isNigeria = true;
+        }
+        processTable();
+      })
+      .catch(err => {
+        console.error("Location check failed:", err);
+        processTable();
+      });
+
+    // Add action buttons to table
+    function processTable() {
+      const rows = document.querySelectorAll("#pdf-table tbody tr");
+      rows.forEach(row => {
+        const payhip = row.cells[2].textContent.trim();
+        const paystack = row.cells[3].textContent.trim();
+
+        const button = document.createElement("button");
+        button.className = "buy-btn";
+        button.textContent = "Buy with " + (isNigeria ? "Paystack 🇳🇬" : "Payhip 🌍");
+        button.onclick = () => window.open(isNigeria ? paystack : payhip, "_blank");
+
+        row.cells[4].innerHTML = "";
+        row.cells[4].appendChild(button);
+      });
+    }
+
+    // Search filter
+    document.getElementById("search").addEventListener("keyup", function() {
+      const filter = this.value.toLowerCase();
+      const rows = document.querySelectorAll("#pdf-table tbody tr");
+      rows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        row.style.display = text.includes(filter) ? "" : "none";
+      });
+    });
+
+    // Sortable table (ignore Action column)
+    document.querySelectorAll("#pdf-table th").forEach((th, columnIndex) => {
+      if (!th.dataset.nosort) {
+        th.addEventListener("click", () => {
+          sortTable(columnIndex);
+        });
+      }
+    });
+
+    let sortDirection = {};
+
+    function sortTable(colIndex) {
+      const table = document.getElementById("pdf-table");
+      const tbody = table.tBodies[0];
+      const rows = Array.from(tbody.querySelectorAll("tr"));
+
+      const ascending = !sortDirection[colIndex];
+      sortDirection[colIndex] = ascending;
+
+      rows.sort((a, b) => {
+        const aText = a.cells[colIndex].textContent.trim().toLowerCase();
+        const bText = b.cells[colIndex].textContent.trim().toLowerCase();
+        return ascending ? aText.localeCompare(bText) : bText.localeCompare(aText);
+      });
+
+      tbody.innerHTML = "";
+      rows.forEach(row => tbody.appendChild(row));
+
+      processTable();
+    }
+  </script>
+</body>
+</html>
     }
   </style>
 </head>
