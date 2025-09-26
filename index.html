@@ -19,7 +19,6 @@
       color: white;
       padding: 2.5rem 1rem;
       text-align: center;
-      position: relative;
     }
     header h1 {
       margin: 0;
@@ -84,7 +83,7 @@
       margin-top: auto;
       background-color: #222;
       color: #ddd;
-      padding: 2.5rem 1rem 3.5rem;
+      padding: 2rem 1rem;
       font-size: 0.9rem;
       position: relative;
     }
@@ -92,23 +91,13 @@
       margin: 0.3rem 0;
       text-align: center;
     }
-    .footer-right {
-      position: absolute;
-      right: 1rem;
-      bottom: 0.8rem;
-      font-size: 0.8rem;
-      color: #aaa;
-      font-style: italic;
-    }
 
-    /* Social media stacked left side */
+    /* Social media stacked vertical at top of footer */
     .social-icons {
-      position: absolute;
-      left: 1rem;
-      bottom: 0.8rem;
       display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
+      justify-content: center;
+      gap: 1.2rem;
+      margin-bottom: 1.2rem;
     }
     .social-icons a {
       display: flex;
@@ -126,6 +115,15 @@
       width: 20px;
       height: 20px;
       fill: currentColor;
+    }
+
+    /* Powered by section at extreme right */
+    .powered-by {
+      text-align: right;
+      font-size: 0.8rem;
+      color: #aaa;
+      font-style: italic;
+      margin-top: 0.5rem;
     }
   </style>
 </head>
@@ -174,10 +172,7 @@
   </table>
 
   <footer>
-    <p>© 2025 Teslah Publishers. All Rights Reserved.</p>
-    <p>Committed to delivering knowledge through published journals.</p>
-
-    <!-- Social media stacked vertical -->
+    <!-- Social media first -->
     <div class="social-icons">
       <a href="#" title="TikTok">
         <svg viewBox="0 0 24 24"><path d="M12.69 2h4.14a6.58 6.58 0 0 0 .07.93 4.42 4.42 0 0 0 1.29 2.5 4.6 4.6 0 0 0 2.52 1.2c.2 0 .41.02.62.02v4.18c-.46 0-.91 0-1.36-.05a7.1 7.1 0 0 1-3.44-1.25v7.47c0 3.98-2.64 7.13-6.53 7.96a8.2 8.2 0 0 1-6.77-1.64A8.17 8.17 0 0 1 2 15.3a8.12 8.12 0 0 1 9.02-8.1v4.29a3.65 3.65 0 0 0-.57-.05 3.85 3.85 0 0 0-3.98 3.54 3.87 3.87 0 0 0 2.14 3.74c1.57.8 3.28.6 4.47-.54a3.6 3.6 0 0 0 1.1-2.66V2Z"/></svg>
@@ -197,7 +192,12 @@
       </a>
     </div>
 
-    <div class="footer-right">Lumeed Ventures tech solutions</div>
+    <!-- Copyright center -->
+    <p>© 2025 Teslah Publishers. All Rights Reserved.</p>
+    <p>Committed to delivering knowledge through published journals.</p>
+
+    <!-- Powered by extreme right -->
+    <div class="powered-by">Powered by Lumeed Ventures I.T. Solutions Company</div>
   </footer>
 
   <script>
