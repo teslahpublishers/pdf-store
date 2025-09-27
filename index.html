@@ -108,12 +108,12 @@
     .footer-main {
       display: flex;
       flex-direction: column;
-      align-items: flex-start; /* keeps content left-aligned */
+      align-items: flex-start;
       margin: 2rem auto 0 auto;
-      width: 100%; 
+      width: 100%;
       background: linear-gradient(135deg, #007acc, #005f99);
       color: #ddd;
-      padding: 1.5rem 2rem; /* added extra left/right padding for alignment with table */
+      padding: 1.5rem 2rem;
       box-sizing: border-box;
       border-radius: 5px 5px 0 0;
     }
@@ -157,7 +157,7 @@
       color: #eee;
       background-color: #000;
       width: 100%;
-      padding: 1rem 2rem; /* added padding to align with table/footer content */
+      padding: 1rem 2rem;
       box-sizing: border-box;
       border-radius: 0 0 5px 5px;
     }
@@ -183,8 +183,8 @@
       <tr>
         <th>PDF Title</th>
         <th>Sales Count</th>
-        <th>Payhip Link (🌍)</th>
-        <th>Paystack Link (🇳🇬)</th>
+        <th>Payment Section for 🌍 International Requests<br><small>(Use WorldRemit → Pay into Opay Account: 6113499475, Name: Onashile Olumide Abimbola)</small></th>
+        <th>Payment Section for 🇳🇬 Nigerian Requests<br><small>(Pay directly into Opay Account: 6113499475, Name: Onashile Olumide Abimbola)</small></th>
         <th data-nosort="true">Action</th>
       </tr>
     </thead>
@@ -192,22 +192,22 @@
       <tr>
         <td>MyResearchPaper1.pdf</td>
         <td>23</td>
-        <td>https://payhip.com/b/abc123</td>
-        <td>https://paystack.com/pay/xyz123</td>
+        <td>Opay A/C: 6113499475<br>Name: Onashile Olumide Abimbola<br>Pay via WorldRemit</td>
+        <td>Opay A/C: 6113499475<br>Name: Onashile Olumide Abimbola<br>Pay via Opay transfer</td>
         <td></td>
       </tr>
       <tr>
         <td>MyResearchPaper2.pdf</td>
         <td>12</td>
-        <td>https://payhip.com/b/def456</td>
-        <td>https://paystack.com/pay/uvw456</td>
+        <td>Opay A/C: 6113499475<br>Name: Onashile Olumide Abimbola<br>Pay via WorldRemit</td>
+        <td>Opay A/C: 6113499475<br>Name: Onashile Olumide Abimbola<br>Pay via Opay transfer</td>
         <td></td>
       </tr>
       <tr>
         <td>MyResearchPaper3.pdf</td>
         <td>45</td>
-        <td>https://payhip.com/b/ghi789</td>
-        <td>https://paystack.com/pay/mno789</td>
+        <td>Opay A/C: 6113499475<br>Name: Onashile Olumide Abimbola<br>Pay via WorldRemit</td>
+        <td>Opay A/C: 6113499475<br>Name: Onashile Olumide Abimbola<br>Pay via Opay transfer</td>
         <td></td>
       </tr>
     </tbody>
@@ -244,37 +244,6 @@
   </footer>
 
   <script>
-    let isNigeria = false;
-
-    fetch("https://ipapi.co/json/")
-      .then(response => response.json())
-      .then(data => {
-        if (data && data.country_code === "NG") {
-          isNigeria = true;
-        }
-        processTable();
-      })
-      .catch(err => {
-        console.error("Location check failed:", err);
-        processTable();
-      });
-
-    function processTable() {
-      const rows = document.querySelectorAll("#pdf-table tbody tr");
-      rows.forEach(row => {
-        const payhip = row.cells[2].textContent.trim();
-        const paystack = row.cells[3].textContent.trim();
-
-        const button = document.createElement("button");
-        button.className = "buy-btn";
-        button.textContent = "Buy with " + (isNigeria ? "Paystack 🇳🇬" : "Payhip 🌍");
-        button.onclick = () => window.open(isNigeria ? paystack : payhip, "_blank");
-
-        row.cells[4].innerHTML = "";
-        row.cells[4].appendChild(button);
-      });
-    }
-
     document.getElementById("search").addEventListener("keyup", function() {
       const filter = this.value.toLowerCase();
       const rows = document.querySelectorAll("#pdf-table tbody tr");
@@ -310,8 +279,6 @@
 
       tbody.innerHTML = "";
       rows.forEach(row => tbody.appendChild(row));
-
-      processTable();
     }
   </script>
 </body>
