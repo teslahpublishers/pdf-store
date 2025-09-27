@@ -11,7 +11,7 @@
       padding: 0;
       position: relative;
       z-index: 0;
-      background-color: #f4f8fc; /* fallback if images don’t load */
+      background-color: #f4f8fc;
       min-height: 100vh;
     }
 
@@ -24,8 +24,8 @@
       width: 100%;
       height: 100%;
       background: url("Untitled design_20250926_203057_0000.png") center/cover no-repeat;
-      opacity: 0.12; /* faded effect */
-      z-index: -1; /* push behind all content */
+      opacity: 0.12;
+      z-index: -1;
     }
 
     header {
@@ -58,7 +58,7 @@
     }
 
     table {
-      margin: 2rem auto 0 auto; /* spacing from header/search */
+      margin: 2rem auto 0 auto;
       border-collapse: collapse;
       width: auto;
       max-width: 1000px;
@@ -101,7 +101,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin: 2rem auto 0 auto; /* spacing from table */
+      margin: 2rem auto 0 auto;
       width: 100%;
       box-sizing: border-box;
     }
@@ -110,8 +110,8 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      width: 100%;
-      max-width: 1000px; /* matches table width */
+      width: 100%;       /* full width */
+      /* max-width: 1000px; */ /* removed to match table width dynamically */
       background: linear-gradient(135deg, #007acc, #005f99);
       color: #ddd;
       padding: 1.5rem 1rem;
@@ -156,9 +156,9 @@
       gap: 0.6rem;
       font-size: 0.9rem;
       color: #eee;
-      background-color: #000; /* black matching logo bg */
-      width: 100%;
-      max-width: 1000px; /* match table */
+      background-color: #000;
+      width: 100%;       /* full width */
+      /* max-width: 1000px; */ /* removed */
       padding: 1rem;
       box-sizing: border-box;
       border-radius: 0 0 5px 5px;
