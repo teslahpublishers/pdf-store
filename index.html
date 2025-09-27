@@ -7,279 +7,199 @@
   <style>
     body {
       font-family: Arial, sans-serif;
+      background-color: #f4f8fc;
       margin: 0;
       padding: 0;
-      position: relative;
-      z-index: 0;
-      background-color: #f4f8fc;
-      min-height: 100vh;
     }
-
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url("Untitled design_20250926_203057_0000.png") center/cover no-repeat;
-      opacity: 0.12;
-      z-index: -1;
-    }
-
     header {
-      background: linear-gradient(135deg, #007acc, #005f99);
+      background-color: #003366;
       color: white;
-      padding: 2.5rem 1rem;
+      padding: 20px;
       text-align: center;
     }
     header h1 {
       margin: 0;
-      font-size: 2.7rem;
-      font-weight: bold;
-      letter-spacing: 1px;
+      font-size: 24px;
     }
-    header h2 {
-      margin: 0.6rem 0 0;
-      font-size: 1.2rem;
-      font-weight: normal;
-    }
-
-    #search {
-      margin: 1rem auto;
-      display: block;
+    .payment-section {
+      margin: 30px auto;
       width: 90%;
-      max-width: 400px;
-      padding: 0.5rem;
-      font-size: 1rem;
-      border-radius: 5px;
-      border: 1px solid #ccc;
+      max-width: 800px;
+      padding: 20px;
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
-
+    .payment-section h2 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    .payment-section svg.hand-icon {
+      width: 32px;
+      height: 32px;
+      fill: #ff6600;
+      flex-shrink: 0;
+    }
+    .payment-section p {
+      font-size: 16px;
+      margin: 5px 0;
+    }
     table {
-      margin: 2rem auto 0 auto;
+      width: 90%;
+      margin: 20px auto;
       border-collapse: collapse;
-      width: auto;
-      max-width: 1000px;
-      background: white;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      background: #fff;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
-    th, td {
-      border: 1px solid #ddd;
-      padding: 0.8rem 1rem;
-      text-align: left;
-      white-space: nowrap;
+    table th, table td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: center;
     }
-    th {
-      background-color: #007acc;
+    table th {
+      background-color: #003366;
       color: white;
-      cursor: pointer;
-      user-select: none;
-    }
-    th:hover {
-      background-color: #005f99;
-    }
-    tr:nth-child(even) {
-      background-color: #f9f9f9;
     }
     .buy-btn {
-      background-color: #007acc;
+      padding: 6px 12px;
+      background-color: #003366;
       color: white;
       border: none;
-      padding: 0.4rem 0.8rem;
-      border-radius: 5px;
+      border-radius: 6px;
       cursor: pointer;
-      font-size: 0.85rem;
+      transition: background 0.3s ease;
     }
     .buy-btn:hover {
-      background-color: #005f99;
+      background-color: #0055aa;
     }
-
-    /* FOOTER STYLES */
+    .notebox {
+      width: 90%;
+      margin: 20px auto;
+      padding: 15px;
+      background-color: #fff8e1;
+      border-left: 6px solid #ff6600;
+      font-size: 15px;
+      border-radius: 6px;
+    }
+    .highlight {
+      font-weight: bold;
+      color: #003366;
+    }
     footer {
+      background-color: #003366;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 30px;
+    }
+    footer .footer-content {
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin: 2rem auto 0 auto;
-      width: 100%;
-      box-sizing: border-box;
+      gap: 10px;
     }
-
-    .footer-main {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      margin: 2rem auto 0 auto;
-      width: 100%;
-      background: linear-gradient(135deg, #007acc, #005f99);
-      color: #ddd;
-      padding: 1.5rem 2rem;
-      box-sizing: border-box;
-      border-radius: 5px 5px 0 0;
-    }
-
-    .social-icons {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.6rem;
-      margin-bottom: 1rem;
-    }
-    .social-icons a {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      color: #ddd;
+    footer a {
+      color: white;
       text-decoration: none;
-      font-size: 0.95rem;
-      transition: color 0.3s ease;
-    }
-    .social-icons a:hover {
-      color: #005f99;
-    }
-    .social-icons svg {
-      width: 22px;
-      height: 22px;
-      fill: currentColor;
-    }
-
-    .copyright {
-      margin: 0.3rem 0;
-      font-size: 0.85rem;
-      color: #ccc;
-    }
-
-    .powered-by {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
-      font-size: 0.9rem;
-      color: #eee;
-      background-color: #000;
-      width: 100%;
-      padding: 1rem 2rem;
-      box-sizing: border-box;
-      border-radius: 0 0 5px 5px;
+      gap: 5px;
     }
-    .powered-by img {
-      height: 35px;
-      width: auto;
-      background-color: #000;
-      padding: 2px;
-      border-radius: 5px;
+    footer svg {
+      vertical-align: middle;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Teslah Publishers</h1>
-    <h2>📚 PDF Store – Browse and purchase published PDF journals</h2>
+    <h1>PDF Store - Teslah Publishers</h1>
   </header>
 
-  <input type="text" id="search" placeholder="Search PDFs...">
+  <!-- International Section -->
+  <div class="payment-section">
+    <h2>
+      <svg class="hand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M12 2c-1.1 0-2 .9-2 2v8h-2V6c0-1.1-.9-2-2-2s-2 .9-2 2v8H2v-2c0-1.1-.9-2-2-2s-2 .9-2 2v4c0 3.31 2.69 6 6 6h6v-8h2v8h2v-8h2v-4c0-1.1-.9-2-2-2s-2 .9-2 2v2h-2V4c0-1.1-.9-2-2-2z"/>
+      </svg>
+      Payment Section for 🌍 International Requests
+    </h2>
+    <p><strong>Opay Account Number:</strong> 6113499475</p>
+    <p><strong>Account Name:</strong> Onashile Olumide Abimbola</p>
+    <p><strong>Instruction:</strong> Use <span class="highlight">WorldRemit</span> to fund this Opay account from abroad.</p>
+  </div>
 
-  <table id="pdf-table">
-    <thead>
-      <tr>
-        <th>PDF Title</th>
-        <th>Sales Count</th>
-        <th>Payment Section for 🌍 International Requests<br><small>(Use WorldRemit → Pay into Opay Account: 6113499475, Name: Onashile Olumide Abimbola)</small></th>
-        <th>Payment Section for 🇳🇬 Nigerian Requests<br><small>(Pay directly into Opay Account: 6113499475, Name: Onashile Olumide Abimbola)</small></th>
-        <th data-nosort="true">Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>MyResearchPaper1.pdf</td>
-        <td>23</td>
-        <td>Opay A/C: 6113499475<br>Name: Onashile Olumide Abimbola<br>Pay via WorldRemit</td>
-        <td>Opay A/C: 6113499475<br>Name: Onashile Olumide Abimbola<br>Pay via Opay transfer</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>MyResearchPaper2.pdf</td>
-        <td>12</td>
-        <td>Opay A/C: 6113499475<br>Name: Onashile Olumide Abimbola<br>Pay via WorldRemit</td>
-        <td>Opay A/C: 6113499475<br>Name: Onashile Olumide Abimbola<br>Pay via Opay transfer</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>MyResearchPaper3.pdf</td>
-        <td>45</td>
-        <td>Opay A/C: 6113499475<br>Name: Onashile Olumide Abimbola<br>Pay via WorldRemit</td>
-        <td>Opay A/C: 6113499475<br>Name: Onashile Olumide Abimbola<br>Pay via Opay transfer</td>
-        <td></td>
-      </tr>
-    </tbody>
+  <!-- Nigerian Section -->
+  <div class="payment-section">
+    <h2>
+      <svg class="hand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M12 2c-1.1 0-2 .9-2 2v8h-2V6c0-1.1-.9-2-2-2s-2 .9-2 2v8H2v-2c0-1.1-.9-2-2-2s-2 .9-2 2v4c0 3.31 2.69 6 6 6h6v-8h2v8h2v-8h2v-4c0-1.1-.9-2-2-2s-2 .9-2 2v2h-2V4c0-1.1-.9-2-2-2z"/>
+      </svg>
+      Payment Section for 🇳🇬 Nigerian Requests
+    </h2>
+    <p><strong>Opay Account Number:</strong> 6113499475</p>
+    <p><strong>Account Name:</strong> Onashile Olumide Abimbola</p>
+    <p><strong>Instruction:</strong> Use your Opay app or direct bank transfer within Nigeria.</p>
+  </div>
+
+  <!-- PDF Store Table -->
+  <table>
+    <tr>
+      <th>PDF Title</th>
+      <th>Price</th>
+      <th>Buy</th>
+    </tr>
+    <tr>
+      <td>Book 1</td>
+      <td>$10</td>
+      <td><button class="buy-btn">Buy Now</button></td>
+    </tr>
+    <tr>
+      <td>Book 2</td>
+      <td>$15</td>
+      <td><button class="buy-btn">Buy Now</button></td>
+    </tr>
+    <tr>
+      <td>Book 3</td>
+      <td>$20</td>
+      <td><button class="buy-btn">Buy Now</button></td>
+    </tr>
   </table>
 
+  <div class="notebox">
+    <p><strong>Note:</strong> For <span class="highlight">International Requests 🌍</span>, kindly use
+      <span class="highlight">WorldRemit</span> to send payment to the Opay account details above. 
+      For <span class="highlight">Nigerian Requests 🇳🇬</span>, use direct bank transfer or Opay app transfer.
+    </p>
+  </div>
+
   <footer>
-    <div class="footer-main">
-      <div class="social-icons">
-        <a href="#" title="TikTok">
-          <svg viewBox="0 0 24 24"><path d="M12.69 2h4.14a6.58 6.58 0 0 0 .07.93 4.42 4.42 0 0 0 1.29 2.5 4.6 4.6 0 0 0 2.52 1.2c.2 0 .41.02.62.02v4.18c-.46 0-.91 0-1.36-.05a7.1 7.1 0 0 1-3.44-1.25v7.47c0 3.98-2.64 7.13-6.53 7.96a8.2 8.2 0 0 1-6.77-1.64A8.17 8.17 0 0 1 2 15.3a8.12 8.12 0 0 1 9.02-8.1v4.29a3.65 3.65 0 0 0-.57-.05 3.85 3.85 0 0 0-3.98 3.54 3.87 3.87 0 0 0 2.14 3.74c1.57.8 3.28.6 4.47-.54a3.6 3.6 0 0 0 1.1-2.66V2Z"/></svg>
-          TikTok
-        </a>
-        <a href="#" title="Twitter">
-          <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3Z"/></svg>
-          Twitter
-        </a>
-        <a href="#" title="Instagram">
-          <svg viewBox="0 0 24 24"><path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm0 2h10c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3zm5 2a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm4.5-.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z"/></svg>
-          Instagram
-        </a>
-        <a href="#" title="Facebook">
-          <svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.5 9.95V14.9h-2.3V12h2.3V9.8c0-2.27 1.35-3.55 3.42-3.55.99 0 2.03.18 2.03.18v2.24h-1.14c-1.12 0-1.47.7-1.47 1.42V12h2.5l-.4 2.9h-2.1v7.05A10 10 0 0 0 22 12Z"/></svg>
-          Facebook
-        </a>
-      </div>
-
-      <p class="copyright">© 2025 Teslah Publishers. All Rights Reserved — Committed to delivering knowledge through published journals.</p>
-    </div>
-
-    <div class="powered-by">
-      <img src="Black Gold Elegant Luxury Jewelry Logo_20250926_064120_0000.png" alt="Lumeed Ventures Logo">
-      <span>Powered by Lumeed Ventures I.T. Solutions Company</span>
+    <div class="footer-content">
+      <p>Contact us:</p>
+      <a href="mailto:teslahpublishers@gmail.com">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" fill="#D44638">
+          <path d="M12 13.065 1.5 6.75v10.5h21V6.75ZM12 10.5l9.75-6H2.25Zm0-9L22.5 6v12a2.006 2.006 0 0 1-2 2h-17a2.006 2.006 0 0 1-2-2V6Z"/>
+        </svg>
+        Gmail
+      </a>
+      <a href="https://wa.me/2348132887252" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" fill="#25D366">
+          <path d="M12.001 2.004c-5.514 0-9.997 4.48-9.997 9.993a9.93 9.93 0 0 0 1.348 5.024L2 22l5.145-1.34a9.961 9.961 0 0 0 4.856 1.24h.001c5.515 0 9.998-4.48 9.998-9.994 0-2.67-1.04-5.178-2.93-7.068-1.89-1.89-4.398-2.834-7.069-2.834ZM12 20.05c-1.57 0-3.09-.418-4.426-1.213l-.317-.185-3.054.796.815-2.983-.206-.326a7.95 7.95 0 0 1-1.228-4.336c0-4.418 3.59-8.007 8.008-8.007 2.138 0 4.146.833 5.657 2.345a7.91 7.91 0 0 1 2.35 5.662c0 4.419-3.59 8.007-8.008 8.007Zm4.378-5.926c-.24-.12-1.416-.699-1.636-.778-.22-.08-.381-.12-.541.12-.16.239-.621.778-.761.938-.14.159-.281.179-.521.06-.24-.12-1.011-.372-1.927-1.187-.712-.635-1.192-1.418-1.332-1.657-.14-.239-.015-.368.105-.488.107-.106.24-.28.36-.42.12-.14.16-.239.24-.398.08-.159.04-.299-.02-.419-.06-.12-.541-1.3-.74-1.78-.2-.48-.4-.419-.541-.428l-.461-.008c-.16 0-.42.06-.64.299-.22.239-.84.819-.84 2s.86 2.32.98 2.479c.12.159 1.7 2.6 4.127 3.641.577.249 1.026.398 1.377.509.578.184 1.104.158 1.521.096.464-.07 1.416-.579 1.615-1.139.2-.56.2-1.039.14-1.139-.06-.1-.22-.159-.46-.279Z"/>
+        </svg>
+        WhatsApp
+      </a>
+      <p>&copy; 2025 Teslah Publishers. All rights reserved.</p>
     </div>
   </footer>
 
   <script>
-    document.getElementById("search").addEventListener("keyup", function() {
-      const filter = this.value.toLowerCase();
-      const rows = document.querySelectorAll("#pdf-table tbody tr");
-      rows.forEach(row => {
-        const text = row.textContent.toLowerCase();
-        row.style.display = text.includes(filter) ? "" : "none";
+    document.querySelectorAll('.buy-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     });
-
-    document.querySelectorAll("#pdf-table th").forEach((th, columnIndex) => {
-      if (!th.dataset.nosort) {
-        th.addEventListener("click", () => {
-          sortTable(columnIndex);
-        });
-      }
-    });
-
-    let sortDirection = {};
-
-    function sortTable(colIndex) {
-      const table = document.getElementById("pdf-table");
-      const tbody = table.tBodies[0];
-      const rows = Array.from(tbody.querySelectorAll("tr"));
-
-      const ascending = !sortDirection[colIndex];
-      sortDirection[colIndex] = ascending;
-
-      rows.sort((a, b) => {
-        const aText = a.cells[colIndex].textContent.trim().toLowerCase();
-        const bText = b.cells[colIndex].textContent.trim().toLowerCase();
-        return ascending ? aText.localeCompare(bText) : bText.localeCompare(aText);
-      });
-
-      tbody.innerHTML = "";
-      rows.forEach(row => tbody.appendChild(row));
-    }
   </script>
 </body>
 </html>
