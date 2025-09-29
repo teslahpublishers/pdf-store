@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Payment Details</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f8fc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 400px;
+    }
+    .box label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+    .box input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .send-btn {
+      width: 100%;
+      padding: 10px;
+      background: #003366;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .send-btn:hover {
+      background: #0055aa;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <form id="submitForm">
+      <label for="title">Requested Book/PDF Title:</label>
+      <input type="text" id="title" name="title" required>
+
+      <label for="receipt">Upload Receipt Screenshot:</label>
+      <input type="file" id="receipt" name="receipt" accept="image/*" required>
+
+      <button type="submit" class="send-btn">Send</button>
+    </form>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const method = params.get("method");
+
+    document.getElementById("submitForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const title = document.getElementById("title").value;
+      if (method === "email") {
+        window.location.href = "mailto:teslahpublishers@gmail.com?subject=Book Request&body=Requested: " + title;
+      } else if (method === "whatsapp") {
+        window.location.href = "https://wa.me/2348039207986?text=Requested:%20" + encodeURIComponent(title);
+      }
+    });
+  </script>
+</body>
+</html>
