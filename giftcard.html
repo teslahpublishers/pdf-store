@@ -36,7 +36,7 @@
       margin-bottom: 20px;
     }
 
-    input[type="text"], input[type="file"] {
+    input[type="text"] {
       width: 100%;
       padding: 10px;
       margin: 10px 0;
@@ -82,25 +82,18 @@
 
   <div class="giftcard-box">
     <h2>Buy via Giftcards</h2>
-    <p>Enter the book title and upload both front and back views of your gift card.</p>
+    <p>Enter the book title you wish to receive.</p>
 
     <form id="giftForm">
       <input type="text" id="bookTitle" placeholder="Enter Book Title" required>
-
-      <label>Upload Front View of Gift Card:</label>
-      <input type="file" id="frontImage" accept="image/*" required>
-
-      <label>Upload Back View (showing PIN area):</label>
-      <input type="file" id="backImage" accept="image/*" required>
-
-      <button type="button" onclick="sendToWhatsApp()">Send to WhatsApp</button>
+      <button type="button" onclick="sendToReceive()">Send to Receive</button>
     </form>
 
     <a href="index.html" class="back-link">⬅ Back to Store</a>
   </div>
 
   <script>
-    function sendToWhatsApp() {
+    function sendToReceive() {
       const bookTitle = document.getElementById('bookTitle').value.trim();
       if (!bookTitle) {
         alert("Please enter the book title.");
@@ -108,7 +101,7 @@
       }
 
       const message = encodeURIComponent(
-        `Hello Teslah Publishers,\nI would like to buy the book titled: "${bookTitle}" via Giftcard.\n\nI have uploaded both front and back views of my card.`
+        `Hello Teslah Publishers,\nI would like to receive the book titled: "${bookTitle}".`
       );
 
       const whatsappURL = `https://wa.me/2348039207986?text=${message}`;
