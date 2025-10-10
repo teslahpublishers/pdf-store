@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buy via Giftcards - Teslah Publishers</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eef2f7;
+      color: #003366;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .giftcard-box {
+      background: #ffffff;
+      width: 90%;
+      max-width: 420px;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+      border-top: 6px solid #003366;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"], input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+
+    button {
+      background-color: #003366;
+      color: #ffffff;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+      transition: background 0.3s ease;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #00509e;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 18px;
+      color: #003366;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="giftcard-box">
+    <h2>Buy via Giftcards</h2>
+    <p>Enter the book title and upload both front and back views of your gift card.</p>
+
+    <form id="giftForm">
+      <input type="text" id="bookTitle" placeholder="Enter Book Title" required>
+
+      <label>Upload Front View of Gift Card:</label>
+      <input type="file" id="frontImage" accept="image/*" required>
+
+      <label>Upload Back View (showing PIN area):</label>
+      <input type="file" id="backImage" accept="image/*" required>
+
+      <button type="button" onclick="sendToWhatsApp()">Send to WhatsApp</button>
+    </form>
+
+    <a href="index.html" class="back-link">⬅ Back to Store</a>
+  </div>
+
+  <script>
+    function sendToWhatsApp() {
+      const bookTitle = document.getElementById('bookTitle').value.trim();
+      if (!bookTitle) {
+        alert("Please enter the book title.");
+        return;
+      }
+
+      const message = encodeURIComponent(
+        `Hello Teslah Publishers,\nI would like to buy the book titled: "${bookTitle}" via Giftcard.\n\nI have uploaded both front and back views of my card.`
+      );
+
+      const whatsappURL = `https://wa.me/2348039207986?text=${message}`;
+      window.open(whatsappURL, "_blank");
+    }
+  </script>
+
+</body>
+</html>
